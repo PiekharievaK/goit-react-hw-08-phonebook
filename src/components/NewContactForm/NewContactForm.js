@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useAddContactsMutation } from 'contactsAPI/contactsAPI';
 
 function ContactForm(props) {
-  const [state, setState] = useState({ name: '', phone: '' });
+  const [state, setState] = useState({ name: '', number: '' });
   const names = useSelector(state => state.contacts.filter);
 
   const [addContact] = useAddContactsMutation();
@@ -15,7 +15,7 @@ function ContactForm(props) {
     e.preventDefault();
 
     const name = e.target.elements.name.value;
-    const number = e.target.elements.phone.value;
+    const number = e.target.elements.number.value;
 
     if (names.includes(name.toLowerCase())) {
       Report.warning(
@@ -28,14 +28,14 @@ function ContactForm(props) {
       );
       return;
     }
-    addContact({ name: name, phone: number });
+    addContact({ name: name, number: number });
 
     reset();
   };
 
   const reset = () => {
     state.name = '';
-    state.phone = '';
+    state.number = '';
   };
 
   const handleChange = e => {
@@ -64,10 +64,10 @@ function ContactForm(props) {
         <span>Number</span>
         <input
           type="tel"
-          name="phone"
+          name="number"
           className={s.input}
           onChange={handleChange}
-          value={state.phone}
+          value={state.number}
           placeholder="Enter number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -83,7 +83,7 @@ function ContactForm(props) {
 
 ContactForm.propTypes = {
   name: PropTypes.string,
-  phone: PropTypes.number,
+  number: PropTypes.number,
 };
 
 export default ContactForm;

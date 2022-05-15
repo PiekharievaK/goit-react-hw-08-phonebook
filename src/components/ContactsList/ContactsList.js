@@ -8,17 +8,21 @@ import { useSelector } from 'react-redux';
 import { findContacts } from 'helpers/filter';
 
 const ContactsList = () => {
+  
+  const { data, isLoading, isError, error } = useGetContactsQuery();
+  
   const contactsFilter = useSelector(state => state.contacts.filter);
 
-  const { data = [], isLoading, isError, error } = useGetContactsQuery();
+  
   const [deleteContacts] = useDeleteContactsMutation();
+
 
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
-
+if (data === undefined){return <p>text</p>}
   const contacts = findContacts(data, contactsFilter);
-  if (contacts.length === 0 || (isError && error.status === 404)) {
+  if (contacts.length === 0 || data ===undefined || (isError && error.status === 404)) {
     return <h2>Please Add Contacts</h2>;
   }
   return (
@@ -28,7 +32,11 @@ const ContactsList = () => {
           <li key={element.id} className={s.item}>
             <span className={s.contact}>
               <span className={s.name}>{element.name}:</span>
-              <span className={s.phone}> {optimizePhone(element.phone)}</span>
+              <span className={s.phone}> {
+              optimizePhone(
+                element.number
+                )
+                }</span>
             </span>
             <span className={s.buttonsBox}>
               <button
