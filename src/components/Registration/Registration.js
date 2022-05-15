@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSignUpUserMutation } from 'contactsAPI/contactsAPI';
 
 export default function Registration(params) {
-  // json2, json2@mail.ru, json123
+  // json, json@mail.ru, json123
   const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
