@@ -1,10 +1,7 @@
-import { useState, useEffect } from 'react';
-import {
-  useLogInUserMutation,
-  useGetCurrentUserQuery,
-} from 'contactsAPI/contactsAPI';
-import { useSelector, useDispatch } from 'react-redux';
-import { userToken, isLoggedIn, currentUser } from 'redux/store';
+import { useState } from 'react';
+import { useLogInUserMutation } from 'contactsAPI/contactsAPI';
+import { useDispatch } from 'react-redux';
+import { userToken, isLoggedIn } from 'redux/store';
 
 export const Login = params => {
   const dispatch = useDispatch();
@@ -14,15 +11,12 @@ export const Login = params => {
 
   const [loginUser] = useLogInUserMutation('');
 
-  const { data } = useGetCurrentUserQuery();
   const handleSubmit = async e => {
     e.preventDefault();
 
-    //   dispatch(currentUser(data));
     await loginUser({ email: email, password: password }).then(res => {
       dispatch(userToken(res.data.token));
       dispatch(isLoggedIn(true));
-    
     });
   };
 
