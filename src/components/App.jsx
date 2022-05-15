@@ -1,22 +1,17 @@
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import { Suspense, useEffect, } from 'react';
+import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { LoginPage } from 'views/loginPage';
 import Registration from './Registration/Registration';
 import { Header } from './Header/header';
 import ContactsPage from 'views/contacts';
-import { useSelector, useDispatch } from 'react-redux';
-import { useGetCurrentUserQuery } from 'contactsAPI/contactsAPI';
-import { userToken, isLoggedIn, currentUser } from 'redux/store'
+
+
 
 export const App = () => {
-  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(currentUser());
-  // }, [dispatch]);
-  
+
   return (
     <>
       <Header />
