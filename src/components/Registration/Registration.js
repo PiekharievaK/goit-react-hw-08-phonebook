@@ -15,7 +15,6 @@ export default function Registration(params) {
   };
 
   const handleChange = ({ target: { name, value } }) => {
-
     switch (name) {
       case 'login':
         return setLogin(value);
