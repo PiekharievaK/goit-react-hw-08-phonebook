@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useLogInUserMutation } from 'contactsAPI/contactsAPI';
-import { useDispatch } from 'react-redux';
-import { userToken, isLoggedIn } from 'redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { userToken, isLoggedIn, currentUser } from 'redux/store';
 
 export const Login = params => {
   const dispatch = useDispatch();
-  // const actualToken = useSelector(state => state.contacts.token)
+  const user = useSelector(state => state.contacts.user)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,6 +16,7 @@ export const Login = params => {
 
     await loginUser({ email: email, password: password }).then(res => {
       dispatch(userToken(res.data.token));
+      dispatch(currentUser(user.name))
       dispatch(isLoggedIn(true));
     });
   };
