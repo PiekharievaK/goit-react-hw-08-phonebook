@@ -1,20 +1,16 @@
 import { useState } from 'react';
 import operations from 'redux/auth/authOperation';
-import { useDispatch, useSelector } from 'react-redux';
-import { userToken, } from 'redux/store';
+import { useDispatch } from 'react-redux';
 
 export const LoginForm = params => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('json@mail.ru');
   const [password, setPassword] = useState('json123');
 
-
- 
   const handleSubmit = e => {
     e.preventDefault();
 
     dispatch(operations.logInUser({ email: email, password: password }));
-
   };
 
   const handleChange = ({ target: { name, value } }) => {

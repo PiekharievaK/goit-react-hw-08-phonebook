@@ -7,11 +7,11 @@ export const Header = () => {
 
   return (
     <>
-    <NavLink to="/" className="headerTitleLink">
-                {' '}
-                <h1 style={{ textAlign: 'center' }}>Phonebook</h1>
-              </NavLink>
-      
+      <NavLink to="/" className="headerTitleLink">
+        {' '}
+        <h1 style={{ textAlign: 'center' }}>Phonebook</h1>
+      </NavLink>
+
       <div className="header">
         <nav>
           {!isLoggedIn && (

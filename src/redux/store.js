@@ -22,7 +22,7 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  contactsApi.middleware
+  contactsApi.middleware,
   // logger,
 ];
 
@@ -39,10 +39,7 @@ export const store = configureStore({
     filter: filterReducer,
   },
   middleware,
-  
-  // devTools: process.env.NODE_ENV === 'development'
- });
+});
 
 export const persistor = persistStore(store);
 setupListeners(store.dispatch);
-

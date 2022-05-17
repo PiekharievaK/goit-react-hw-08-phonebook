@@ -23,12 +23,12 @@ const signUpUser = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(
-      toast.error(
-          'Something wrong. Please  check that the form is filled out correctly and try again. Or go to sign in.',
-        ),
+        toast.error(
+          'Something wrong. Please  check that the form is filled out correctly and try again. Or go to sign in.'
+        )
       );
     }
-  },
+  }
 );
 
 const logInUser = createAsyncThunk(
@@ -41,11 +41,11 @@ const logInUser = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(
         toast.error(
-          'Something wrong. Please  check that the form is filled out correctly and try again. Or  go to sign up.',
-        ),
+          'Something wrong. Please  check that the form is filled out correctly and try again. Or  go to sign up.'
+        )
       );
     }
-  },
+  }
 );
 
 const logOut = createAsyncThunk(
@@ -54,10 +54,10 @@ const logOut = createAsyncThunk(
     try {
       await axios.post('/users/logout');
       token.unset();
-      } catch (error) {
+    } catch (error) {
       return rejectWithValue(toast.error('Error logout'));
     }
-  },
+  }
 );
 
 const fetchCurrentUser = createAsyncThunk(
@@ -69,16 +69,16 @@ const fetchCurrentUser = createAsyncThunk(
     if (token === null) {
       return thunkAPI.rejectWithValue();
     }
-    
-    token.set( userToken);
-    
+
+    token.set(userToken);
+
     try {
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(toast.error('Error fetch current user.'));
     }
-  },
+  }
 );
 
 const operations = {
