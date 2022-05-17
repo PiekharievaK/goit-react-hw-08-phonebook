@@ -1,6 +1,6 @@
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { LoginPage } from 'views/loginPage';

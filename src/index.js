@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Suspense } from 'react';
 import { store, persistor } from 'redux/store';
 import App from 'components/App';
 import { BrowserRouter } from 'react-router-dom';
