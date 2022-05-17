@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import operations from 'redux/auth/authOperation';
 import { useDispatch } from 'react-redux';
+import s from './Login.module.css'
 
 export const LoginForm = params => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('json@mail.ru');
-  const [password, setPassword] = useState('json123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -26,12 +27,13 @@ export const LoginForm = params => {
 
   return (
     <>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+     
+      <form onSubmit={handleSubmit} className={s.form} >
         <input
           name="email"
           value={email}
           type="text"
+          className={s.input}
           placeholder="email"
           onChange={handleChange}
         />
@@ -39,10 +41,11 @@ export const LoginForm = params => {
           name="password"
           value={password}
           type="password"
+          className={s.input}
           placeholder="password"
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" className={s.button}>Submit</button>
       </form>
     </>
   );

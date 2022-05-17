@@ -7,7 +7,7 @@ export const Homepage = () => {
       <div className="Homepage">
         {' '}
         {isLoggedIn ? (
-          <h2>Nice to see you again</h2>
+          <h2>Nice to see you</h2>
         ) : (
           <h2>Welcome, stranger</h2>
         )}

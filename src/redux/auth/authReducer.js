@@ -14,7 +14,7 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [operations.signUpUser.pending](state, action) {
-      state.loading = true;
+      // state.loading = true;
       state.error = null;
     },
     [operations.signUpUser.fulfilled](state, action) {
@@ -28,7 +28,7 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
     [operations.logInUser.pending](state, action) {
-      state.loading = true;
+      // state.loading = true;
       state.error = null;
     },
     [operations.logInUser.fulfilled](state, action) {
@@ -66,6 +66,7 @@ const authSlice = createSlice({
     },
     [operations.fetchCurrentUser.rejected](state, action) {
       state.loading = false;
+      state.isLoggedIn = false
     },
   },
 });

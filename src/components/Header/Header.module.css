@@ -1,0 +1,49 @@
+@media screen and (max-width: 767px) {
+    .header {
+      align-items: center;
+      flex-direction: column;
+    margin-bottom:unset
+    }
+    .userMenuTitle {
+      margin-bottom: 15px;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.452);
+      }
+      .navLink {
+          display: inline-block;
+          margin: 10px;
+      }
+      .button{margin-bottom: 20px;}
+  }
+  
+  .userMenu{
+      text-align: center;
+  }
+.headerTitleLink {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+   }
+ 
+ 
+  .button {
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    width: 150px;
+    background-color: #96d4d4;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .button:hover,
+  .button:focus {
+    background-color: #5eb9b9c9;
+  }
+  

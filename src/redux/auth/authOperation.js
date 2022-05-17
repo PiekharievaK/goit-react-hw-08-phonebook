@@ -16,9 +16,9 @@ const token = {
 
 const signUpUser = createAsyncThunk(
   'auth/register',
-  async (credentials, { rejectWithValue }) => {
+  async (userData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/users/signup', credentials);
+      const { data } = await axios.post('/users/signup', userData);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -33,12 +33,13 @@ const signUpUser = createAsyncThunk(
 
 const logInUser = createAsyncThunk(
   'auth/login',
-  async (credentials, { rejectWithValue }) => {
+  async (userData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/users/login', credentials);
+      const { data } = await axios.post('/users/login', userData);
       token.set(data.token);
       return data;
     } catch (error) {
+      console.log(userData);
       return rejectWithValue(
         toast.error(
           'Something wrong. Please  check that the form is filled out correctly and try again. Or  go to sign up.'

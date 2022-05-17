@@ -1,5 +1,6 @@
 import operations from 'redux/auth/authOperation';
 import { useSelector, useDispatch } from 'react-redux';
+import s from './Header.module.css'
 
 const UserMenu = () => {
   const dispatch = useDispatch();
@@ -11,15 +12,15 @@ const UserMenu = () => {
   };
 
   return isLoggedIn ? (
-    <>
-      <h2>
+    <div className={s.userMenu}>
+      <h2 className={s.userMenuTitle}>
         Hello,
         <>{user.name}</>
       </h2>
-      <button onClick={logOut}> Log Out</button>
-    </>
+      <button onClick={logOut} className={s.button} > Log Out</button>
+    </div>
   ) : (
-    <h2>Please register or login</h2>
+    <h2 className={s.userMenuTitle}>Please register or login</h2>
   );
 };
 

@@ -18,15 +18,14 @@ export const App = () => {
   const token = useSelector(state => state.auth.token);
 
   useEffect(() => {
-    if (!token) {
+    if (!token ) {
       return;
     }
     dispatch(operations.fetchCurrentUser());
-    console.log('object');
-  }, [dispatch, token]);
+    }, [dispatch, token]);
 
   return (
-    !isFetchingCurrentUser && (
+    !isFetchingCurrentUser ? (
       <>
         <Header />
         <Routes>
@@ -56,10 +55,12 @@ export const App = () => {
               </PrivateRoute>
             }
           />
+          
         </Routes>
         <ToastContainer autoClose={3000} position="top-center" />
+        {/* <div className='loader'></div>  */}
       </>
-    )
+        ):<div className='loader'></div> 
   );
 };
 
