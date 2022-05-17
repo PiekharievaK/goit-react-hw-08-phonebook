@@ -1,15 +1,15 @@
 import s from './ContactsFilter.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { filter } from 'redux/store';
+import { changesFilter } from 'redux/contacts/contactsReducer';
 
 function FilterField() {
   const dispatch = useDispatch();
 
   const changeFilter = e => {
-    dispatch(filter(e.target.value));
+    dispatch(changesFilter(e.target.value));
   };
 
-  const value = useSelector(state => state.contacts.filter);
+  const value = useSelector(state => state.filter);
 
   return (
     <label className={s.label}>

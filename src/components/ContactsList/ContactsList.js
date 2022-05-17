@@ -1,7 +1,7 @@
 import {
   useGetContactsQuery,
-  useDeleteContactsMutation,
-} from 'contactsAPI/contactsAPI';
+  useDeleteContactMutation,
+} from 'redux/contacts/contactsApi';
 import { optimizePhone } from 'helpers/optimizePhone';
 import s from './ContactsList.module.css';
 import { useSelector } from 'react-redux';
@@ -11,10 +11,10 @@ const ContactsList = () => {
   
   const { data, isLoading, isError, error } = useGetContactsQuery();
   
-  const contactsFilter = useSelector(state => state.contacts.filter);
+  const contactsFilter = useSelector(state => state.filter);
 
   
-  const [deleteContacts] = useDeleteContactsMutation();
+  const [deleteContacts] = useDeleteContactMutation();
 
 
   if (isLoading) {

@@ -1,7 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
-import { api } from 'contactsAPI/contactsAPI';
-import { setupListeners } from '@reduxjs/toolkit/dist/query';
+import { setupListeners } from '@reduxjs/toolkit/query';
+// import logger from 'redux-logger';
 import {
   persistStore,
   persistReducer,
@@ -12,60 +11,38 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-const persistConfig = {
-  key: 'contacts',
-  storage,
-  whitelist: ['token', 'isLoggedIn'],
-};
+import storage from 'redux-persist/lib/storage';
+import { contactsApi } from './contacts/contactsApi';
+import authReducer from './auth/authReducer';
+import filterReducer from './contacts/contactsReducer';
 
-const initialState = {
-  filter: '',
-  token: '',
-  user: { name: '', email: '' },
-  isLoggedIn: false,
-  isFatchingUser: false,
-};
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  api.middleware,
+  contactsApi.middleware
+  // logger,
 ];
 
-export const contactsSlice = createSlice({
-  name: 'contacts',
-  initialState: initialState,
-  reducers: {
-    filter(state, action) {
-      state.filter = action.payload;
-    },
-    userToken(state, action) {
-      state.token = action.payload;
-    },
-    currentUser(state, action) {
-      state.user = action.payload;
-    },
-    isLoggedIn(state, action) {
-      state.isLoggedIn = action.payload;
-    },
-  },
-});
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token', 'isLoggedIn'],
+};
 
-const persistedContacts = persistReducer(persistConfig, contactsSlice.reducer);
 export const store = configureStore({
   reducer: {
-    [api.reducerPath]: api.reducer,
-    contacts: persistedContacts,
+    auth: persistReducer(authPersistConfig, authReducer),
+    [contactsApi.reducerPath]: contactsApi.reducer,
+    filter: filterReducer,
   },
   middleware,
-});
+  
+  // devTools: process.env.NODE_ENV === 'development'
+ });
 
 export const persistor = persistStore(store);
-
-export const { filter, userToken, isLoggedIn, currentUser } =
-  contactsSlice.actions;
-
 setupListeners(store.dispatch);
+

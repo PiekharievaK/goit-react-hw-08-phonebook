@@ -30,6 +30,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.headerTitleLink{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -47,6 +52,11 @@ code {
   text-decoration: underline;
   color: rgb(42, 140, 165);
 }
-.navLink:hover {
+.navLink:hover,
+.headerTitleLink:hover{
   color: rgb(50, 128, 128);
+}
+
+.Homepage {
+  text-align: center;
 }

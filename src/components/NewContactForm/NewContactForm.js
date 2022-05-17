@@ -3,13 +3,13 @@ import { Report } from 'notiflix';
 import s from './NewContactForm.module.css';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useAddContactsMutation } from 'contactsAPI/contactsAPI';
+import { useAddContactMutation } from 'redux/contacts/contactsApi';
 
 function ContactForm(props) {
   const [state, setState] = useState({ name: '', number: '' });
-  const names = useSelector(state => state.contacts.filter);
+  const names = useSelector(state => state.filter);
 
-  const [addContact] = useAddContactsMutation();
+  const [addContact] = useAddContactMutation();
 
   const handleSubmit = e => {
     e.preventDefault();

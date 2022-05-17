@@ -1,17 +1,19 @@
 import { useState } from 'react';
-import { useSignUpUserMutation } from 'contactsAPI/contactsAPI';
+import { useDispatch } from 'react-redux';
+import operations from 'redux/auth/authOperation';
 
 export default function Registration(params) {
   // json, json@mail.ru, json123
+  const dispatch = useDispatch()
   const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [signUpUser] = useSignUpUserMutation();
 
-  const handleSubmit = async e => {
+
+  const handleSubmit =  e => {
     e.preventDefault();
-    await signUpUser({ name: login, email: email, password: password });
+     dispatch(operations.signUpUser({ name: login, email: email, password: password }));
   };
 
   const handleChange = ({ target: { name, value } }) => {

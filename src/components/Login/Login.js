@@ -1,24 +1,20 @@
 import { useState } from 'react';
-import { useLogInUserMutation } from 'contactsAPI/contactsAPI';
+import operations from 'redux/auth/authOperation';
 import { useDispatch, useSelector } from 'react-redux';
-import { userToken, isLoggedIn, currentUser } from 'redux/store';
+import { userToken, } from 'redux/store';
 
-export const Login = params => {
+export const LoginForm = params => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.contacts.user)
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('json@mail.ru');
+  const [password, setPassword] = useState('json123');
 
-  const [loginUser] = useLogInUserMutation('');
 
-  const handleSubmit = async e => {
+ 
+  const handleSubmit = e => {
     e.preventDefault();
 
-    await loginUser({ email: email, password: password }).then(res => {
-      dispatch(userToken(res.data.token));
-      dispatch(currentUser(user.name))
-      dispatch(isLoggedIn(true));
-    });
+    dispatch(operations.logInUser({ email: email, password: password }));
+
   };
 
   const handleChange = ({ target: { name, value } }) => {

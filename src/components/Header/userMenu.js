@@ -1,39 +1,33 @@
-import { useLogOutUserMutation } from 'contactsAPI/contactsAPI';
+import operations from 'redux/auth/authOperation';
 import { useSelector, useDispatch } from 'react-redux';
-import { currentUser, isLoggedIn, userToken } from 'redux/store';
+// import { currentUser, isLoggedIn, userToken } from 'redux/store';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const [logOutUser] = useLogOutUserMutation();
-  const token = useSelector(state => state.contacts.token);
-  const user =useSelector(state=> state.contacts.user)
-  // const isLoggIn = useSelector(state => state.contacts.isLoggedIn);
+  const user =useSelector(state=> state.auth.user)
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
 
 
-  const logOut = async token => {
-    await logOutUser(token);
-    dispatch(userToken(''))
-    dispatch(currentUser(''));
+  const logOut = () => {
+ 
+ dispatch(operations.logOut())
   };
 
-  return user? (
-    <>
+  return isLoggedIn? <>
       <h2>Hello,
         <>{user.name}</>
       </h2>
       <button
-        onClick={() => {
-          logOut(token);
-          dispatch(isLoggedIn(false));
-        }}
+        onClick={logOut}
       >
         {' '}
         Log Out
       </button>
     </>
-  ) : (
-    <h2>Please sign in or sign up</h2>
+   
+  : (
+    <h2>Please register or login</h2>
   );
 };
 

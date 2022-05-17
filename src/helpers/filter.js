@@ -1,5 +1,5 @@
 export const findContacts = (contacts , filterValue) => {
-  console.log('object',contacts);
+
   if(contacts === []){
     return
   }
