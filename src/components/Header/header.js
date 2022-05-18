@@ -14,7 +14,7 @@ export const Header = () => {
 
       <div className={s.header}>
         <nav>
-          {!isLoggedIn && (
+          {!isLoggedIn ? (
             <>
               <NavLink to="/register" className='navLink'>
                 {' '}
@@ -25,12 +25,12 @@ export const Header = () => {
                 Log in
               </NavLink>{' '}
             </>
-          )}
+          ):
 
           <NavLink to="/contacts" className='navLink'>
             {' '}
             Contacts
-          </NavLink>
+          </NavLink>}
         </nav>
 
         <div>
