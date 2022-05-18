@@ -39,7 +39,6 @@ const logInUser = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      console.log(userData);
       return rejectWithValue(
         toast.error(
           'Something wrong. Please  check that the form is filled out correctly and try again. Or  go to sign up.'

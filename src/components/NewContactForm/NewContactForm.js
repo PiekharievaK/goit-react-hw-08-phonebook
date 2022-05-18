@@ -1,19 +1,20 @@
 import PropTypes from 'prop-types';
-import { Report } from 'notiflix';
+import {Report } from 'notiflix';
 import s from './NewContactForm.module.css';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useAddContactMutation } from 'redux/contacts/contactsApi';
+import { useAddContactMutation, useGetContactsQuery } from 'redux/contacts/contactsApi';
 
 function ContactForm(props) {
   const [state, setState] = useState({ name: '', number: '' });
-  const names = useSelector(state => state.filter);
-
   const [addContact] = useAddContactMutation();
+  const { data } = useGetContactsQuery();
+
+
+  
 
   const handleSubmit = e => {
     e.preventDefault();
-
+    const names = data.map(contact => contact.name.toLowerCase())
     const name = e.target.elements.name.value;
     const number = e.target.elements.number.value;
 
@@ -28,6 +29,7 @@ function ContactForm(props) {
       );
       return;
     }
+    
     addContact({ name: name, number: number });
 
     reset();
